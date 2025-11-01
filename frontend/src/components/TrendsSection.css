@@ -1,0 +1,138 @@
+.trends-section {
+  background: linear-gradient(135deg, rgba(255,153,51,0.15) 0%, rgba(255,255,255,0.95) 50%, rgba(19,136,8,0.15) 100%);
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  color: #1f2937;
+  position: relative;
+  overflow: hidden;
+  border: 3px solid rgba(0,0,128,0.2);
+}
+
+.trends-section::before {
+  content: '📈';
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 4rem;
+  opacity: 0.2;
+  z-index: 0;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  position: relative;
+  z-index: 1;
+}
+
+.trends-section h3 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0;
+  color: #000080;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.section-tts {
+  background: linear-gradient(45deg, #ff9933, #138808);
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: white;
+  box-shadow: 0 6px 15px rgba(255, 153, 51, 0.3);
+  transition: all 0.3s ease;
+}
+
+.section-tts:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.chart-container {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border: 2px solid rgba(0,0,128,0.1);
+  transition: all 0.3s ease;
+}
+
+.chart-container:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.chart-container h4 {
+  margin: 0 0 20px 0;
+  color: #1f2937;
+  font-size: 1.3rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chart-container h4::before {
+  content: '📊';
+  font-size: 1.5rem;
+}
+
+/* Chart styling */
+.recharts-wrapper {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: rgba(107, 114, 128, 0.2);
+}
+
+.recharts-tooltip-wrapper {
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.recharts-default-tooltip {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: none !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+  backdrop-filter: blur(10px);
+}
+
+@media (max-width: 768px) {
+  .trends-section {
+    padding: 20px;
+  }
+  
+  .charts-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .chart-container {
+    padding: 16px;
+  }
+  
+  .trends-section h3 {
+    font-size: 1.5rem;
+  }
+}

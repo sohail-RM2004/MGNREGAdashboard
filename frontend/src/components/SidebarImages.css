@@ -1,0 +1,41 @@
+.sidebar-image {
+  position: fixed;
+  top: 610px;
+  width: 500px;
+  height: 800px;
+  z-index: 5;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+.sidebar-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+
+.left-sidebar {
+  left: 50px;
+}
+
+.right-sidebar {
+  right: 50px;
+}
+
+.sidebar-image img {
+  width: 500px;
+  height: 600px;
+  object-fit: fill;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-image:hover img {
+  transform: scale(1.1);
+}
+
+@media (max-width: 1400px) {
+  .sidebar-image {
+    display: none;
+  }
+}

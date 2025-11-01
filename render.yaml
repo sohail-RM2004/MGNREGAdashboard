@@ -1,0 +1,37 @@
+services:
+  # Backend API Service
+  - type: web
+    name: mgnrega-backend
+    env: node
+    plan: starter
+    buildCommand: cd backend && npm install && npx prisma generate
+    startCommand: cd backend && npm start
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: MGNREGA_API_KEY
+        sync: false
+      - key: MGNREGA_API_URL
+        sync: false
+      - key: CRON_SCHEDULE
+        value: "0 2 1 * *"
+      - key: NODE_ENV
+        value: production
+
+  # Frontend Static Site
+  - type: web
+    name: mgnrega-frontend
+    env: static
+    plan: starter
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: ./frontend/dist
+    envVars:
+      - key: VITE_API_BASE
+        fromService:
+          type: web
+          name: mgnrega-backend
+          property: host
+
+databases:
+  - name: mgnrega-db
+    plan: starter

@@ -1,0 +1,73 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model State {
+  id         Int        @id @default(autoincrement())
+  stateCode  String     @unique
+  stateName  String
+  districts  District[]
+}
+
+model District {
+  id           Int           @id @default(autoincrement())
+  districtCode String        @unique
+  districtName String
+  stateId      Int
+  state        State         @relation(fields: [stateId], references: [id])
+  performances Performance[]
+}
+
+model Performance {
+  id                                  Int      @id @default(autoincrement())
+  finYear                             String
+  month                               String
+  approvedLabourBudget                Float?
+  avgWageRatePerDayPerPerson          Float?
+  avgDaysOfEmploymentPerHH            Float?
+  differentlyAbledPersonsWorked       Int?
+  materialAndSkilledWages             Float?
+  completedWorks                      Int?
+  gpsWithNilExp                       Int?
+  ongoingWorks                        Int?
+  persondaysCentralLiability          Float?
+  scPersondays                        Float?
+  scWorkersVsActiveWorkers            Float?
+  stPersondays                        Float?
+  stWorkersVsActiveWorkers            Float?
+  totalAdmExpenditure                 Float?
+  totalExp                            Float?
+  totalHHWorked                       Int?
+  totalIndividualsWorked              Int?
+  totalActiveJobCards                 Int?
+  totalActiveWorkers                  Int?
+  totalHHsCompleted100Days            Int?
+  totalJobCardsIssued                 Int?
+  totalWorkers                        Int?
+  totalWorksTakenUp                   Int?
+  wages                               Float?
+  womenPersondays                     Float?
+  percentCategoryBWorks               Float?
+  percentExpAgricultureAlliedWorks    Float?
+  percentNRMExpenditure               Float?
+  percentPaymentsWithin15Days         Float?
+  createdAt                           DateTime @default(now())
+  districtId                          Int
+  district                            District @relation(fields: [districtId], references: [id])
+
+  @@index([districtId, finYear, month])
+}
+
+model CachedData {
+  id          Int      @id @default(autoincrement())
+  apiEndpoint String
+  response    Json
+  cachedAt    DateTime @default(now())
+  validUntil  DateTime
+}
