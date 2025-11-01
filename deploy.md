@@ -30,20 +30,13 @@ git push -u origin main
 
 ### Option B: Manual Setup
 
-#### Backend Service
+#### Single Web Service (Backend + Frontend)
 1. Create new Web Service
 2. Connect GitHub repository
 3. Configure:
-   - **Build Command**: `cd backend && npm install && npx prisma generate`
+   - **Build Command**: `cd backend && npm run build`
    - **Start Command**: `cd backend && npm start`
    - **Environment**: Node.js
-
-#### Frontend Service
-1. Create new Static Site
-2. Connect GitHub repository
-3. Configure:
-   - **Build Command**: `cd frontend && npm install && npm run build`
-   - **Publish Directory**: `frontend/dist`
 
 #### Database
 1. Create MySQL database on Render
@@ -64,7 +57,7 @@ NODE_ENV=production
 
 ### Frontend Environment Variables
 ```
-VITE_API_BASE=https://your-backend-service.onrender.com/api
+# Not needed - frontend uses relative API paths
 ```
 
 ## Step 4: Database Migration
@@ -77,8 +70,9 @@ After deployment, run database migrations:
 
 ## Step 5: Verify Deployment
 
-1. Check backend health: `https://your-backend.onrender.com/api/states`
-2. Check frontend: `https://your-frontend.onrender.com`
+1. Check application: `https://your-app.onrender.com`
+2. Check API health: `https://your-app.onrender.com/health`
+3. Check API endpoint: `https://your-app.onrender.com/api/states`
 
 ## Troubleshooting
 

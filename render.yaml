@@ -1,10 +1,10 @@
 services:
-  # Backend API Service
+  # Full Stack Application (Backend + Frontend)
   - type: web
-    name: mgnrega-backend
+    name: mgnrega-app
     env: node
     plan: starter
-    buildCommand: cd backend && npm install && npx prisma generate
+    buildCommand: cd backend && npm run build
     startCommand: cd backend && npm start
     envVars:
       - key: DATABASE_URL
@@ -17,20 +17,6 @@ services:
         value: "0 2 1 * *"
       - key: NODE_ENV
         value: production
-
-  # Frontend Static Site
-  - type: web
-    name: mgnrega-frontend
-    env: static
-    plan: starter
-    buildCommand: cd frontend && npm install && npm run build
-    staticPublishPath: ./frontend/dist
-    envVars:
-      - key: VITE_API_BASE
-        fromService:
-          type: web
-          name: mgnrega-backend
-          property: host
 
 databases:
   - name: mgnrega-db

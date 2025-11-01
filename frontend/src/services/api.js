@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000/api";
+const BASE = import.meta.env.VITE_API_BASE || "/api";
 
 export default {
   getStates: () => axios.get(`${BASE}/states`).then(r => r.data),
